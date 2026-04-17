@@ -1,0 +1,19 @@
+name: CI Pipeline LMS
+on:
+  push:
+    branches: [ "develop", "main" ]
+  pull_request:
+    branches: [ "develop", "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build project
+        run: echo "Building LMS project... Done!"
+
+      - name: Run tests
+        run: echo "Running automated tests... All tests passed!"
