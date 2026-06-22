@@ -18,7 +18,7 @@ export default function LoginPage() {
 
     // Cari user berdasarkan email, password, dan role
     const user = allUsers.find(
-      (u) => u.email === email && u.password === password && u.role === role
+      (u) => u.email === email && u.password === password && u.role === role,
     );
 
     if (!user) {
@@ -42,10 +42,7 @@ export default function LoginPage() {
       <div className="login-card">
         {/* Left side — image */}
         <div className="login-card-image">
-          <img
-            src="/library-students.png"
-            alt="Students studying in library"
-          />
+          <img src="/library-students.png" alt="Students studying in library" />
         </div>
 
         {/* Right side — form */}
@@ -57,11 +54,7 @@ export default function LoginPage() {
           </h1>
 
           {/* Error message */}
-          {error && (
-            <div className="login-error">
-              {error}
-            </div>
-          )}
+          {error && <div className="login-error">{error}</div>}
 
           <form onSubmit={handleSubmit} className="login-form">
             {/* Email field */}
@@ -114,14 +107,7 @@ export default function LoginPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   >
-                    <rect
-                      width="18"
-                      height="11"
-                      x="3"
-                      y="11"
-                      rx="2"
-                      ry="2"
-                    />
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                   </svg>
                 </span>
