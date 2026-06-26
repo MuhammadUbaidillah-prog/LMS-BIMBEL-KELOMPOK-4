@@ -185,7 +185,21 @@ export const teachers: User[] = [
   },
 ];
 
-export const allUsers: User[] = [...students, ...teachers];
+export const admins: User[] = [
+  {
+    id: "a1",
+    username: "admin_lumina",
+    email: "admin@lumina.id",
+    password: "admin123",
+    role: "admin",
+    fullName: "Admin Lumina",
+    avatar: "/avatars/admin.png",
+    phone: "085555555555",
+    joinedAt: "2025-01-01",
+  }
+];
+
+export const allUsers: User[] = [...students, ...teachers, ...admins];
 
 // ---------- SUBJECTS ----------
 
