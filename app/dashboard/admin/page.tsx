@@ -433,7 +433,7 @@ export default function AdminDashboardPage() {
           {/* US-026: Categories Framework Control */}
           <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm space-y-4">
             <h2 className="text-base font-bold text-slate-900">
-              US-026: Kategori Kelas & Bidang Keilmuan (Class Categories)
+              Kategori Kelas & Bidang Keilmuan (Class Categories)
             </h2>
             <form
               onSubmit={addCategory}
@@ -494,7 +494,7 @@ export default function AdminDashboardPage() {
           {/* US-029: Master Schedules Builder */}
           <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm space-y-4">
             <h2 className="text-base font-bold text-slate-900">
-              US-029: Manajemen Alokasi Jadwal Induk Kuliah (Master Schedules)
+              Manajemen Alokasi Jadwal Induk Kuliah (Master Schedules)
             </h2>
             <form
               onSubmit={addSchedule}
@@ -617,7 +617,7 @@ export default function AdminDashboardPage() {
           {/* US-030: Learning Content Publisher */}
           <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm space-y-4">
             <h2 className="text-base font-bold text-slate-900">
-              US-030: Penayangan Materi & Konten Modul (Learning Content)
+              Penayangan Materi & Konten Modul (Learning Content)
             </h2>
             <form
               onSubmit={addLearningContent}
