@@ -252,7 +252,7 @@ export default function TeacherAssignmentPage() {
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
                   <tr className="border-b border-slate-100 text-slate-400 font-semibold uppercase">
-                    <th className="pb-3">Nama Siswa</th>
+                    <th className="pb-3">Nama Siswa </th>
                     <th className="pb-3">Tanggal Unggah</th>
                     <th className="pb-3">Status</th>
                     <th className="pb-3 text-center">Skor / Feedback</th>
