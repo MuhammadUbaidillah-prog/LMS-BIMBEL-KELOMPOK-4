@@ -214,13 +214,20 @@ export const superadmin: User[] = [
     avatar: "/avatars/admin.png",
     phone: "085555555555",
     joinedAt: "2025-01-01",
-    access: ["manage_users",
+    access: [
+      "manage_users",
       "manage_courses",
-      "view_reports"]
-  }
+      "view_reports",
+    ],
+  },
 ];
 
-export const allUsers: User[] = [...students, ...teachers, ...admins];
+export const allUsers: User[] = [
+  ...students,
+  ...teachers,
+  ...admins,
+  ...superadmin,
+];
 
 // ---------- SUBJECTS ----------
 

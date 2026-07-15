@@ -23,6 +23,8 @@ export default function AdminLayout({
       return;
     }
     const parsed: User = JSON.parse(stored);
+    
+    // VALIDASI AKSES: Khusus Staff Admin biasa
     if (parsed.role !== "admin") {
       router.push("/login/admin");
       return;
@@ -45,16 +47,7 @@ export default function AdminLayout({
       label: "Admin Panel",
       href: "/dashboard/admin",
       icon: (
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <rect x="3" y="3" width="7" height="7" rx="1" />
           <rect x="14" y="3" width="7" height="7" rx="1" />
           <rect x="3" y="14" width="7" height="7" rx="1" />
@@ -73,10 +66,7 @@ export default function AdminLayout({
   return (
     <div className="dashboard-layout">
       {sidebarOpen && (
-        <div
-          className="sidebar-overlay"
-          onClick={() => setSidebarOpen(false)}
-        />
+        <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />
       )}
 
       {/* Sidebar */}
@@ -89,9 +79,7 @@ export default function AdminLayout({
             <span className="sidebar-logo-lumina">LUMINA</span>
             <span className="sidebar-logo-lms">ERP</span>
           </div>
-          <p className="sidebar-tagline">
-            Central Administration Control Panel
-          </p>
+          <p className="sidebar-tagline">Central Administration Control Panel</p>
         </div>
 
         <nav className="sidebar-nav">
@@ -110,22 +98,9 @@ export default function AdminLayout({
         </nav>
 
         <div className="sidebar-logout">
-          <button
-            id="nav-admin-logout"
-            className="sidebar-nav-item logout-item"
-            onClick={handleLogout}
-          >
+          <button id="nav-admin-logout" className="sidebar-nav-item logout-item" onClick={handleLogout}>
             <span className="sidebar-nav-icon">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                 <polyline points="16 17 21 12 16 7" />
                 <line x1="21" x2="9" y1="12" y2="12" />
@@ -139,59 +114,29 @@ export default function AdminLayout({
       {/* Main Area */}
       <div className="dashboard-main bg-slate-50/50">
         <header className="dashboard-topbar flex items-center justify-between px-6 py-3 border-b border-slate-100 bg-white">
-          <button
-            className="mobile-menu-btn md:hidden"
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            aria-label="Toggle menu"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="3" x2="21" y1="6" y2="6" />
-              <line x1="3" x2="21" y1="12" y2="12" />
-              <line x1="3" x2="21" y1="18" y2="18" />
+          <button className="mobile-menu-btn md:hidden" onClick={() => setSidebarOpen(!sidebarOpen)} aria-label="Toggle menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="3" x2="21" y1="6" y2="6" /><line x1="3" x2="21" y1="12" y2="12" /><line x1="3" x2="21" y1="18" y2="18" />
             </svg>
           </button>
 
           <div className="flex-1 text-left pl-4 md:pl-0">
-            <h1 className="text-base font-bold text-slate-800 leading-tight">
-              System Admin Console
-            </h1>
-            <p className="text-[11px] text-red-500 mt-0.5 font-bold uppercase tracking-wider">
-              Root Access Active
+            <h1 className="text-base font-bold text-slate-800 leading-tight">System Admin Console</h1>
+            <p className="text-[11px] text-amber-500 mt-0.5 font-bold uppercase tracking-wider">
+              Admin Access Active
             </p>
           </div>
 
           <div className="topbar-user flex items-center gap-3">
             <div className="flex items-center gap-3 pl-4 cursor-pointer group">
-              <div className="w-9 h-9 rounded-full overflow-hidden border border-red-200 bg-red-50 flex items-center justify-center flex-shrink-0">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="text-red-600"
-                >
-                  <circle cx="12" cy="8" r="5" />
-                  <path d="M20 21a8 8 0 0 0-16 0" />
+              <div className="w-9 h-9 rounded-full overflow-hidden border border-amber-200 bg-amber-50 flex items-center justify-center flex-shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-amber-600">
+                  <circle cx="12" cy="8" r="5" /><path d="M20 21a8 8 0 0 0-16 0" />
                 </svg>
               </div>
               <div className="hidden sm:flex flex-col text-left leading-none">
-                <span className="text-xs font-semibold text-slate-800">
-                  {user.fullName}
-                </span>
-                <span className="text-[10px] text-slate-400 mt-0.5">
-                  Global Admin
-                </span>
+                <span className="text-xs font-semibold text-slate-800">{user.fullName}</span>
+                <span className="text-[10px] text-slate-400 mt-0.5">Staff Admin</span>
               </div>
             </div>
           </div>
