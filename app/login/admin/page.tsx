@@ -9,6 +9,8 @@ import { allUsers } from "../../lib/dummy-data";
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // 1. Sinkron dengan tipe data di dummy-data.ts ("superadmin" tanpa underscore)
+  const [role, setRole] = useState<"admin" | "superadmin">("admin");
   const [error, setError] = useState("");
   const router = useRouter();
 
@@ -16,22 +18,28 @@ export default function AdminLoginPage() {
     e.preventDefault();
     setError("");
 
-    // Find user strictly matching email, password, and the 'admin' role
     const user = allUsers.find(
-      (u) => u.email === email && u.password === password && u.role === "admin",
+      (u) =>
+        u.email === email &&
+        u.password === password &&
+        u.role === role
     );
 
-    // If no matching user is found, or they don't have the admin role
+    // Jika user tidak ditemukan di allUsers dummy data
     if (!user) {
-      setError("Email atau password salah, atau Anda bukan Admin!");
+      setError("Email atau password salah!");
       return;
     }
 
-    // Save user to localStorage for session persistence across dashboards
+    // Menyimpan session user yang valid ke localStorage
     localStorage.setItem("currentUser", JSON.stringify(user));
 
-    // Exclusive redirect to the admin dashboard
-    router.push("/dashboard/admin");
+    // 2. Alur Routing: Tetap melempar ke sub-folder masing-masing secara terpisah
+    if (user.role === "admin") {
+      router.push("/dashboard/admin");
+    } else if (user.role === "superadmin") {
+      router.push("/dashboard/super_admin");
+    }
   };
 
   return (
@@ -120,9 +128,28 @@ export default function AdminLoginPage() {
               </div>
             </div>
 
+            {/* Role Selection */}
+            <div className="role-selection">
+              <button
+                type="button"
+                className={`role-btn ${role === "admin" ? "active" : ""}`}
+                onClick={() => setRole("admin")}
+              >
+                Admin
+              </button>
+
+              <button
+                type="button"
+                className={`role-btn ${role === "superadmin" ? "active" : ""}`}
+                onClick={() => setRole("superadmin")}
+              >
+                Super Admin
+              </button>
+            </div>
+
             {/* Login button */}
             <button type="submit" id="btn-login" className="btn-login-main">
-              Login as Admin
+              Login as {role === "superadmin" ? "Super Admin" : "Admin"}
             </button>
           </form>
 

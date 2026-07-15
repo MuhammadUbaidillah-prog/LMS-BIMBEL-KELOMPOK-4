@@ -8,7 +8,9 @@ import { allUsers } from "../lib/dummy-data";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState<"teacher" | "student">("teacher");
+  const [role, setRole] = useState<
+    "teacher" | "student"
+  >("teacher");
   const [error, setError] = useState("");
   const router = useRouter();
 
@@ -16,36 +18,47 @@ export default function LoginPage() {
     e.preventDefault();
     setError("");
 
-    // Cari user berdasarkan email, password, dan role
     const user = allUsers.find(
-      (u) => u.email === email && u.password === password && u.role === role,
+      (u) =>
+        u.email === email &&
+        u.password === password &&
+        u.role === role
     );
 
     if (!user) {
-      setError("Email, password, atau role salah. Coba lagi!");
+      setError("Email, password, atau role salah!");
       return;
     }
 
-    // Simpan user ke localStorage supaya bisa dipakai di dashboard
     localStorage.setItem("currentUser", JSON.stringify(user));
 
-    // Redirect berdasarkan role
-    if (user.role === "student") {
-      router.push("/dashboard/student");
-    } else {
-      router.push("/dashboard/teacher");
+    switch (user.role) {
+      case "student":
+        router.push("/dashboard/student");
+        break;
+
+      case "teacher":
+        router.push("/dashboard/teacher");
+        break;
+
+      default:
+        router.push("/");
     }
   };
 
   return (
     <div className="login-page">
       <div className="login-card">
-        {/* Left side — image */}
+
+        {/* Left Side */}
         <div className="login-card-image">
-          <img src="/library-students.png" alt="Students studying in library" />
+          <img
+            src="/library-students.png"
+            alt="Students studying in library"
+          />
         </div>
 
-        {/* Right side — form */}
+        {/* Right Side */}
         <div className="login-card-form">
           <h1 className="login-heading">
             Welcome,
@@ -53,15 +66,16 @@ export default function LoginPage() {
             Login to your account
           </h1>
 
-          {/* Error message */}
           {error && <div className="login-error">{error}</div>}
 
           <form onSubmit={handleSubmit} className="login-form">
-            {/* Email field */}
+
+            {/* Email */}
             <div className="input-group">
               <label htmlFor="email" className="input-label">
                 Email
               </label>
+
               <div className="input-wrapper">
                 <span className="input-icon">
                   <svg
@@ -78,11 +92,11 @@ export default function LoginPage() {
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                   </svg>
                 </span>
+
                 <input
                   id="email"
                   type="email"
                   className="login-input"
-                  placeholder=""
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -90,11 +104,12 @@ export default function LoginPage() {
               </div>
             </div>
 
-            {/* Password field */}
+            {/* Password */}
             <div className="input-group">
               <label htmlFor="password" className="input-label">
                 Password
               </label>
+
               <div className="input-wrapper">
                 <span className="input-icon">
                   <svg
@@ -107,15 +122,15 @@ export default function LoginPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   >
-                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                    <rect width="18" height="11" x="3" y="11" rx="2" />
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                   </svg>
                 </span>
+
                 <input
                   id="password"
                   type="password"
                   className="login-input"
-                  placeholder=""
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -123,46 +138,62 @@ export default function LoginPage() {
               </div>
             </div>
 
-            {/* Forgot password */}
+            {/* Forgot Password */}
             <div className="forgot-password-row">
-              <Link href="/forgot-password" className="forgot-password-link">
-                forgot the password
+              <Link
+                href="/forgot-password"
+                className="forgot-password-link"
+              >
+                Forgot Password?
               </Link>
             </div>
 
-            {/* Role selection — Teacher & Student only */}
+            {/* Role */}
             <div className="role-selection">
+
               <button
                 type="button"
-                id="role-teacher"
-                className={`role-btn ${role === "teacher" ? "active" : ""}`}
+                className={`role-btn ${
+                  role === "teacher" ? "active" : ""
+                }`}
                 onClick={() => setRole("teacher")}
               >
                 Teacher
               </button>
+
               <button
                 type="button"
-                id="role-student"
-                className={`role-btn ${role === "student" ? "active" : ""}`}
+                className={`role-btn ${
+                  role === "student" ? "active" : ""
+                }`}
                 onClick={() => setRole("student")}
               >
                 Student
               </button>
+
             </div>
 
-            {/* Login button */}
-            <button type="submit" id="btn-login" className="btn-login-main">
+            {/* Login */}
+            <button
+              type="submit"
+              id="btn-login"
+              className="btn-login-main"
+            >
               Login
             </button>
+
           </form>
 
-          {/* Don't have account link */}
           <p className="register-login-link">
-            Don&apos;t have account?{" "}
-            <Link href="/register" className="register-link-accent">
+            Don't have account?{" "}
+            <Link
+              href="/register"
+              className="register-link-accent"
+            >
               Register
             </Link>
           </p>
+
         </div>
       </div>
     </div>
