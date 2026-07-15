@@ -218,7 +218,7 @@ export default function AdminDashboardPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
         <div>
           <h1 className="text-xl font-bold tracking-tight text-slate-900">
-            Workspace Master Administration
+            Workspace Super admin
           </h1>
           <p className="text-xs text-slate-500 mt-1">
             Lumina Light-ERP Monolith Platform Integration Panel
