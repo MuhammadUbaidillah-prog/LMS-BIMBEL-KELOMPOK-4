@@ -252,7 +252,7 @@ export default function AdminDashboardPage() {
       {activeTab === "payments" && (
         <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm space-y-4">
           <h2 className="text-base font-bold text-slate-900">
-            Validasi Slip Pembayaran Kursus
+            Validasi Slip Pembayaran Kursus lms bimbel
           </h2>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs text-slate-600">
