@@ -9,11 +9,12 @@ export interface User {
   username: string;
   email: string;
   password: string;
-  role: "student" | "teacher" | "admin";
+  role: "student" | "teacher" | "admin" | "superadmin";
   fullName: string;
   avatar: string;
   phone: string;
   joinedAt: string;
+  access?: string[]; // For admin users, list of access permissions
 }
 
 export interface Subject {
@@ -196,6 +197,26 @@ export const admins: User[] = [
     avatar: "/avatars/admin.png",
     phone: "085555555555",
     joinedAt: "2025-01-01",
+    access: ["manage_users",
+      "manage_courses",
+      "view_reports"]
+  }
+];
+
+export const superadmin: User[] = [
+  {
+    id: "sa1",
+    username: "super_admin_lumina",
+    email: "superadmin@lumina.id",
+    password: "superadmin123",
+    role: "superadmin",
+    fullName: "Super Admin Lumina",
+    avatar: "/avatars/admin.png",
+    phone: "085555555555",
+    joinedAt: "2025-01-01",
+    access: ["manage_users",
+      "manage_courses",
+      "view_reports"]
   }
 ];
 
